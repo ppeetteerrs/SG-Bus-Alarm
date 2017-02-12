@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-slides>
+    <ion-slide>
+      <h1>Good Morning Peter</h1>
+        <ion-list>
+          <ion-item>
+            <ion-label floating>What Bus?</ion-label>
+            <ion-input type="text" [(ngModel)]="busInput"></ion-input>
+          </ion-item>
+        </ion-list>
+    </ion-slide>
+    <ion-slide>
+      <h1>Which direction are you going?</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Which bus stop are you currently at?</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Which bus stop are you heading to?</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>How long in advance would you like your alarm to remind you?</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>How many stops in advance would you like your alarm to remind you?</h1>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
