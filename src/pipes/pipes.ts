@@ -1,5 +1,5 @@
-import { UniquePipe } from './uniqueFilter';
+import { BusServicePipe } from './busServiceFilter';
 
-export { UniquePipe } from './uniqueFilter';
+export { BusServicePipe } from './busServiceFilter';
 
-export const Pipes = [UniquePipe]
+export const Pipes = [ BusServicePipe ]

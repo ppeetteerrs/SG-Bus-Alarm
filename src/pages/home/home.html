@@ -7,31 +7,67 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-slides>
+<ion-content>
+  <ion-slides [options]="sliderOptions">
     <ion-slide>
+      <ion-chip style="width:90%;margin:5%">
+        <b><ion-icon name="bus" color="dark" style="color: green"></ion-icon></b>
+        <ion-label><b>Default</b></ion-label>
+      </ion-chip>
+      <ion-chip style="width:90%;margin:5%">
+        <ion-icon name="alarm" color="dark" style="color: yellow"></ion-icon>
+        <ion-label><b>Default</b></ion-label>
+      </ion-chip>
       <h1>Good Morning Peter</h1>
+      <form (ngSubmit)="submitBusNo(busInput)">
         <ion-list>
           <ion-item>
             <ion-label floating>What Bus?</ion-label>
-            <ion-input type="text" [(ngModel)]="busInput"></ion-input>
+            <ion-input type="text" [(ngModel)]="busInput" clearInput="true" [ngModelOptions]="{standalone: true}">></ion-input>
           </ion-item>
         </ion-list>
+        <button ion-button type="submit">OK</button>
+      </form>
+      <h1>{{load_status}}</h1>
+      <button ion-button (click)="updateBusInfo()">UPDATE</button>
     </ion-slide>
     <ion-slide>
       <h1>Which direction are you going?</h1>
+      <button ion-button *ngFor="let station_name of bus_end_station_names; let i = index" (click)="submitBusDirection(i)">To {{bus_end_station_names[i]['Description']}}</button>
+      <button ion-button *ngIf="(bus_end_station_names && bus_end_station_names.length>0)" (click)="submitBusDirection(1)">I Don't Know</button>
+      <button ion-button (click)="slideBack()">BACK</button>
     </ion-slide>
     <ion-slide>
-      <h1>Which bus stop are you currently at?</h1>
-    </ion-slide>
-    <ion-slide>
-      <h1>Which bus stop are you heading to?</h1>
-    </ion-slide>
-    <ion-slide>
-      <h1>How long in advance would you like your alarm to remind you?</h1>
+      <ion-list>
+        <ion-list-header>
+          Action
+        </ion-list-header>
+        <ion-item *ngFor="let stop of bus_all_stop_names; let i = index" (click)="submitBusStop(i)" [color]="checkIfStopIsCurrentOrDestination(i) ? 'danger' : 'primary'" >
+          {{stop}}
+        </ion-item>
+      </ion-list>
+      <button ion-button (click)="slideBack()">BACK</button>
     </ion-slide>
     <ion-slide>
       <h1>How many stops in advance would you like your alarm to remind you?</h1>
+      <ion-badge item-right>{{stops_in_advance}}</ion-badge>
+      <ion-item>
+        <ion-range min="1" [(max)]="number_of_stops" step="1" snaps="true" [(ngModel)]="stops_in_advance">
+          <ion-label range-left>1</ion-label>
+          <ion-label range-right>{{number_of_stops}}</ion-label>
+        </ion-range>  
+      </ion-item>
+      <button ion-button (click)="submitStopsInAdvance()">OK</button>
+      <button ion-button (click)="slideBack()">BACK</button>
+    </ion-slide>
+    <ion-slide>
+      <h2>Currrent Stop: {{bus_current_stop? bus_current_stop['Description'] : 'NA'}}</h2>
+      <h2>{{locationTracker.lat}}</h2>
+      <h2>{{locationTracker.lng}}</h2>
+      <h2>Alarm Stop: {{bus_alarm_stop?bus_alarm_stop['Description']:''}} : {{bus_alarm_stop?bus_alarm_stop['Latitude']:''}}, {{bus_alarm_stop?bus_alarm_stop['Longitude']:''}}</h2>
+      <h2>Destination Stop: {{bus_destination_stop?bus_destination_stop['Description']:''}}</h2>
+      <h1>{{load_status}}</h1>
+      <button ion-button (click)="slideBack()">BACK</button>
     </ion-slide>
   </ion-slides>
 </ion-content>

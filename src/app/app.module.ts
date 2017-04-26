@@ -1,5 +1,12 @@
 //Ionic and Angular
-import { NgModule, ErrorHandler, IonicApp, IonicModule, IonicErrorHandler, HttpModule, Ng2FilterPipeModule } from './imports';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser'
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { HttpModule } from '@angular/http';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+import { NativeStorage } from 'ionic-native';
+import { NativeAudio } from 'ionic-native';
+import { BackgroundGeolocation } from "ionic-native";
 
 //App
 import { MyApp } from './app.component';
@@ -23,6 +30,7 @@ import { Providers } from '../providers/providers';
   imports: [
     IonicModule.forRoot(MyApp),
     HttpModule,
+    BrowserModule,
     Ng2FilterPipeModule
   ],
   bootstrap: [IonicApp],
@@ -32,7 +40,10 @@ import { Providers } from '../providers/providers';
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler}, 
-    Providers
+    Providers,
+    NativeStorage,
+    NativeAudio,
+    BackgroundGeolocation
   ]
 })
 

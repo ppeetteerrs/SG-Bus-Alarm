@@ -11,7 +11,6 @@
   <h3>BUS ALARM</h3>
   <h3>Current Latitude: {{locationTracker.lat}}</h3>
   <h3>Current Longitude: {{locationTracker.lng}}</h3>
-  <h3>Current State: {{locationTracker.hi}}</h3>
   <button ion-button full primary (click)="startTracking()">Start Tracking</button>
   <button ion-button full primary (click)="stopTracking()">Stop Tracking</button>
   <ion-list>
@@ -20,7 +19,5 @@
       <ion-input type="text" [(ngModel)]="busInput"></ion-input>
     </ion-item>
   </ion-list>
-
-  <div *ngIf="bus_services"><h2 *ngFor="let bus of bus_services | filterBy: {ServiceNo:busInput} | uniqFilter">{{bus.ServiceNo}}</h2></div>
 
 </ion-content>
