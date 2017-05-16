@@ -19,9 +19,9 @@ export class LocationTracker {
       stationaryRadius: 0,
       distanceFilter: 0, 
       startForeground: true,
-      stopOnTerminate: true,
-      debug: true,
-      interval: 500 
+      stopOnTerminate: false,
+      debug: false,
+      interval: 5000 
     };
    
     BackgroundGeolocation.configure((location) => {
